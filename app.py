@@ -35,7 +35,7 @@ voice_plan = 1 if voice_plan == 'Yes' else 0
 intl_plan = 1 if intl_plan == 'Yes' else 0
 
 no_voice_messages = st.number_input('Voice Messages', min_value=0, max_value=100, step=1)
-intl_mins = st.number_input('International Minutes', min_value=0.0, max_value=20.0, step=0.1)
+intl_mins = st.number_input('International Minutes', min_value=0.0, step=0.1)
 no_of_international_calls = st.number_input('International Calls', min_value=0, max_value=100, step=1)
 intl_charge = st.number_input('International Charge', min_value=0.0, max_value=5.0, step=0.1)
 customer_calls = st.number_input('Customer Service Calls', min_value=0, max_value=10, step=1)
