@@ -41,7 +41,7 @@ intl_charge = st.number_input('International Charge', min_value=0.0, step=0.1)
 customer_calls = st.number_input('Customer Service Calls', min_value=0, max_value=10, step=1)
 total_mins = st.number_input('Total Minutes', min_value=0.0, max_value=1000.0, step=1.0)
 total_calls = st.number_input('Total Calls', min_value=0, max_value=500, step=1)
-total_charge = st.number_input('Total Charge', min_value=0.0, max_value=100.0, step=1.0)
+total_charge = st.number_input('Total Charge', min_value=0.0, step=1.0)
 
 # Collect the features into a list
 features = [state, area_code, voice_plan, no_voice_messages, intl_plan, intl_mins, no_of_international_calls, intl_charge, customer_calls, total_mins, total_calls, total_charge]
@@ -49,4 +49,4 @@ features = [state, area_code, voice_plan, no_voice_messages, intl_plan, intl_min
 # Predict button
 if st.button('Predict'):
     result = predict(features)
-    st.write(f'Prediction: {"Churn" if result == 1 else "No Churn"}')
+    st.write(f'Prediction: {"Churn custumer will quit the company" if result == 1 else "No Churn custumer will not quit the company"}')
