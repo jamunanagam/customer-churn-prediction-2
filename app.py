@@ -11,13 +11,32 @@ def predict(features):
 st.title('Customer Churn Prediction')
 
 # Create input fields for each feature
-state = st.number_input('State', min_value=0, max_value=50, step=1)
-area_code = st.number_input('Area Code', min_value=100, max_value=999, step=1)
-voice_plan = st.selectbox('Voice Plan', [0, 1])
-voice_messages = st.number_input('Voice Messages', min_value=0, max_value=100, step=1)
-intl_plan = st.selectbox('International Plan', [0, 1])
+state_mapping = {
+    'Alabama': 0, 'Alaska': 1, 'Arizona': 2, 'Arkansas': 3, 'California': 4,
+    'Colorado': 5, 'Connecticut': 6, 'Delaware': 7, 'Florida': 8, 'Georgia': 9,
+    'Hawaii': 10, 'Idaho': 11, 'Illinois': 12, 'Indiana': 13, 'Iowa': 14,
+    'Kansas': 15, 'Kentucky': 16, 'Louisiana': 17, 'Maine': 18, 'Maryland': 19,
+    'Massachusetts': 20, 'Michigan': 21, 'Minnesota': 22, 'Mississippi': 23,
+    'Missouri': 24, 'Montana': 25, 'Nebraska': 26, 'Nevada': 27, 'New Hampshire': 28,
+    'New Jersey': 29, 'New Mexico': 30, 'New York': 31, 'North Carolina': 32,
+    'North Dakota': 33, 'Ohio': 34, 'Oklahoma': 35, 'Oregon': 36, 'Pennsylvania': 37,
+    'Rhode Island': 38, 'South Carolina': 39, 'South Dakota': 40, 'Tennessee': 41,
+    'Texas': 42, 'Utah': 43, 'Vermont': 44, 'Virginia': 45, 'Washington': 46,
+    'West Virginia': 47, 'Wisconsin': 48, 'Wyoming': 49
+}
+state_name = st.selectbox('State', list(state_mapping.keys()))
+state = state_mapping[state_name]
+area_code = st.number_input('Area Code', min_value=400, max_value=999, step=1)
+voice_plan = st.selectbox('Voice Plan', ['No', 'Yes'])
+intl_plan = st.selectbox('International Plan', ['No', 'Yes'])
+
+# Map Yes/No to 0/1
+voice_plan = 1 if voice_plan == 'Yes' else 0
+international_plan  = 1 if intl_plan == 'Yes' else 0
+
+No_voice_messages = st.number_input('Voice Messages', min_value=0, max_value=100, step=1)
 intl_mins = st.number_input('International Minutes', min_value=0.0, max_value=20.0, step=0.1)
-intl_calls = st.number_input('International Calls', min_value=0, max_value=20, step=1)
+no.of_international_calls = st.number_input('International Calls', min_value=0, max_value=100, step=1)
 intl_charge = st.number_input('International Charge', min_value=0.0, max_value=5.0, step=0.1)
 customer_calls = st.number_input('Customer Service Calls', min_value=0, max_value=10, step=1)
 total_mins = st.number_input('Total Minutes', min_value=0.0, max_value=1000.0, step=1.0)
